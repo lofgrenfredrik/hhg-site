@@ -9,7 +9,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "next": "13.0.4",
+    "@next/font": "13.0.6",
+    "next": "13.0.6",
     "react": "18.2.0",
     "react-datocms": "4.0.7",
     "react-dom": "18.2.0"

@@ -1,35 +1,15 @@
-// import type { GetStaticProps } from "next";
-import { Image as DatoImage } from "react-datocms"
+import { Fragment } from "react"
 
+import Hero from "../components/Hero"
 import { fetchQueryAPI } from "../lib/api"
 
-function Home({ mainHero, about }) {
-  console.log(mainHero, "<--- mainHero")
-  const image = {
-    ...mainHero.backgroundImage.responsiveImage,
-    alt: "",
-  }
-
-  console.log(about)
-
+export default function Home({ mainHero }) {
   return (
-    <div>
-      <DatoImage
-        style={{ height: "100vh" }}
-        data={image}
-        usePlaceholder={false}
-        lazyLoad={false}
-        layout="fill"
-        objectFit="cover"
-      />
-      <div className="absolute flex h-screen w-screen items-center justify-center">
-        <h1 className="text-9xl font-bold text-white"> YOLO</h1>
-      </div>
-    </div>
+    <Fragment>
+      <Hero hero={mainHero} />
+    </Fragment>
   )
 }
-
-export default Home
 
 export async function getStaticProps() {
   const homeQuery = await fetchQueryAPI(`
@@ -54,10 +34,20 @@ export async function getStaticProps() {
         about {
           description
         }
+        contactInfo {
+          eMail
+          facebook
+          instagram
+          linkedin
+          phone
+        }
       }
     `)
-  console.log(homeQuery, "<----- YOLOOOOOO")
   return {
-    props: { mainHero: homeQuery.mainHero, about: homeQuery.about },
+    props: {
+      mainHero: homeQuery.mainHero,
+      about: homeQuery.about,
+      contactInfo: homeQuery.contactInfo,
+    },
   }
 }
