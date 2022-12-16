@@ -10,14 +10,13 @@ export default function Home({ hero }) {
   const { title, description, backgroundImage } = hero
   const { src, height, width, alt } = backgroundImage.responsiveImage
   const { topSentinelRef } = useNavbarContext()
-
   return (
     <Fragment>
       <div ref={topSentinelRef} className="absolute top-0 h-28" />
       <Image
         className="h-screen w-screen object-cover"
         priority
-        alt={alt}
+        alt={alt ?? ""}
         src={src}
         width={width}
         height={height}
