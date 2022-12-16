@@ -1,13 +1,16 @@
+"use client"
 import Link from "next/link"
 
+import useNavbarContext from "../hooks/useNavbarContext"
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./Icon"
 import { WithTextLogo } from "./Logo"
 
 export default function Footer({ contactInfo }) {
   const { eMail, phone, facebook, instagram, linkedin } = contactInfo
+  const { bottomSentinelRef } = useNavbarContext()
   return (
-    <footer className="flex flex-col px-8 pb-4  lg:px-12">
-      <div className="mx-auto flex w-full max-w-maximus flex-col items-center justify-between py-14 lg:flex-row">
+    <footer className="relative flex flex-col pb-4">
+      <div className="mx-auto flex w-full max-w-maximus flex-col items-center justify-between py-14 px-8 lg:flex-row">
         <div className="min-w-[300px]">
           <Link href="/">
             <span className="sr-only">To start page</span>
@@ -65,6 +68,7 @@ export default function Footer({ contactInfo }) {
       <small className="mx-auto">
         &copy; Copyright {new Date().getFullYear()}, Henx Hospitality Group AB
       </small>
+      <div ref={bottomSentinelRef} className="absolute bottom-0 z-50 h-12" />
     </footer>
   )
 }

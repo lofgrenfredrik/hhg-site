@@ -1,14 +1,19 @@
+"use client"
 import Image from "next/image"
+import Link from "next/link"
 import { Fragment } from "react"
 
+import useNavbarContext from "../hooks/useNavbarContext"
 import { SimpleLogo } from "./Logo"
 
 export default function Home({ hero }) {
   const { title, description, backgroundImage } = hero
   const { src, height, width, alt } = backgroundImage.responsiveImage
+  const { topSentinelRef } = useNavbarContext()
 
   return (
     <Fragment>
+      <div ref={topSentinelRef} className="absolute top-0 h-28" />
       <Image
         className="h-screen w-screen object-cover"
         priority
@@ -24,9 +29,9 @@ export default function Home({ hero }) {
             <h1 className="font-heading text-5xl font-bold">{title}</h1>
             <p className="mt-4 text-lg">{description}</p>
           </div>
-          <div className="w-3/5 max-w-sm flex-1">
-            <SimpleLogo className="h-full w-full fill-white " />
-          </div>
+          <Link href="/" className="w-3/5 max-w-sm flex-1">
+            <SimpleLogo className="h-full w-full fill-white" />
+          </Link>
         </div>
       </div>
     </Fragment>

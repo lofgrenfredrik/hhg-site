@@ -3,11 +3,21 @@ import "./globals.css"
 import { Open_Sans, Unna } from "@next/font/google"
 
 import Footer from "../components/Footer"
+import { ContactModal } from "../components/modal"
 import Nav from "../components/Nav"
+import ContactModalContext from "../context/ContactModalContext"
+import NavbarContext from "../context/NavbarContext"
 import { fetchQueryAPI } from "../lib/api"
 
-const unna = Unna({ variable: "--font-unna", weight: ["400", "700"] })
-const OpenSans = Open_Sans()
+const unna = Unna({
+  variable: "--font-unna",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+})
+const opensans = Open_Sans({
+  subsets: ["latin"],
+})
 
 async function getData() {
   const res = await fetchQueryAPI(`
@@ -18,6 +28,7 @@ async function getData() {
       instagram
       linkedin
       phone
+      contactMessage
     }
   }
   `)
@@ -29,11 +40,18 @@ export default async function RootLayout({ children }) {
   const { contactInfo } = await getData()
 
   return (
-    <html lang="en" className={`${OpenSans.className} ${unna.variable}`}>
+    <html lang="en" className={`${opensans.className} ${unna.variable}`}>
       <body>
-        <Nav />
-        <main className="flex min-h-screen flex-col justify-between bg-slate-900">{children}</main>
-        <Footer contactInfo={contactInfo} />
+        <ContactModalContext>
+          <NavbarContext>
+            <Nav />
+            <main className="flex min-h-screen flex-col justify-between bg-slate-900">
+              {children}
+            </main>
+            <Footer contactInfo={contactInfo} />
+            <ContactModal contactInfo={contactInfo} />
+          </NavbarContext>
+        </ContactModalContext>
       </body>
     </html>
   )
