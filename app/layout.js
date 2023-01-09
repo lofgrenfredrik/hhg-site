@@ -45,7 +45,7 @@ export default async function RootLayout({ children }) {
         <ContactModalContext>
           <NavbarContext>
             <Nav />
-            <main className="flex min-h-screen flex-col justify-between bg-gray-900">
+            <main className="flex min-h-screen flex-col justify-between bg-neutral-900">
               {children}
             </main>
             <Footer contactInfo={contactInfo} />
