@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 
+import EventsList from "../../components/EventsList"
 import Hero from "../../components/Hero"
 import { fetchQueryAPI } from "../../lib/api"
 
@@ -29,8 +30,8 @@ export default async function Events() {
   return (
     <Fragment>
       <Hero hero={eventsHero} />
-      <div className="flex h-screen items-center justify-center">
-        <h1 className="text-white">EVENTS</h1>
+      <div className="mx-auto flex max-w-maximus flex-col gap-8 py-8 lg:gap-14 lg:py-14">
+        <EventsList />
       </div>
     </Fragment>
   )

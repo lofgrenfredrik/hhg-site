@@ -1,4 +1,4 @@
-import "./globals.css"
+import "./global.css"
 
 import { Open_Sans, Unna } from "@next/font/google"
 
