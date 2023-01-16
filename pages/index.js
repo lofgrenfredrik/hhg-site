@@ -4,7 +4,16 @@ import Hero from "../components/Hero"
 import Partners from "../components/Partners"
 import { fetchQueryAPI } from "../lib/api"
 
-async function getData() {
+export default function Page({ hero, partner }) {
+  return (
+    <Fragment>
+      <Hero hero={hero} />
+      <Partners partners={partner} />
+    </Fragment>
+  )
+}
+
+export async function getServerSideProps() {
   const res = await fetchQueryAPI(`
     query {
       mainHero {
@@ -35,18 +44,16 @@ async function getData() {
           }
         }
       }
+      contactInfo {
+        eMail
+        facebook
+        instagram
+        linkedin
+        phone
+        contactMessage
+      }
     }
   `)
 
-  return res
-}
-
-export default async function Page() {
-  const { mainHero, partner } = await getData()
-  return (
-    <Fragment>
-      <Hero hero={mainHero} />
-      <Partners partners={partner} />
-    </Fragment>
-  )
+  return { props: { hero: res.mainHero, partner: res.partner, contactInfo: res.contactInfo } }
 }

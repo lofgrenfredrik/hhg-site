@@ -1,4 +1,3 @@
-"use client"
 import PropTypes from "prop-types"
 import React, { createContext } from "react"
 import { useInView } from "react-intersection-observer"

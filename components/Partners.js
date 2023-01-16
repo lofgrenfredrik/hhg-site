@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Partners({ partners }) {
   return (
-    <div className="mx-auto max-w-maximus p-8 text-zinc-50">
+    <div className="mx-auto w-full max-w-maximus p-8 text-zinc-50">
       <h2 className="font-heading text-3xl font-bold">{partners.title}</h2>
       <div className="grid grid-cols-partners gap-5 pt-8 md:grid-cols-partners-lg">
         {partners.partnerLogos.map((partner) => (

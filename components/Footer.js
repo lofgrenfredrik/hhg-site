@@ -1,4 +1,3 @@
-"use client"
 import Link from "next/link"
 
 import useNavbarContext from "../hooks/useNavbarContext"
@@ -9,7 +8,7 @@ export default function Footer({ contactInfo }) {
   const { eMail, phone, facebook, instagram, linkedin } = contactInfo
   const { bottomSentinelRef } = useNavbarContext()
   return (
-    <footer className="relative flex flex-col pb-4">
+    <footer className="relative flex flex-col bg-white pb-4">
       <div className="mx-auto flex w-full max-w-maximus flex-col items-center justify-between py-14 px-8 lg:flex-row">
         <div className="min-w-[300px]">
           <Link href="/">
