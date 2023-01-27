@@ -38,7 +38,7 @@ export default function MyApp({ Component, pageProps }) {
         <main
           className={`${opensans.className} ${unna.variable} flex min-h-screen flex-col justify-between bg-neutral-900`}
         >
-          <Layout contactInfo={pageProps.contactInfo}>
+          <Layout contactInfo={pageProps.contactInfo ?? {}}>
             <Component {...pageProps} />
           </Layout>
         </main>
