@@ -18,6 +18,13 @@ export default function Events({ hero, allEvents }) {
 export async function getServerSideProps() {
   const res = await fetchQueryAPI(`
     query {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
       eventsHero {
         title
         description
@@ -28,6 +35,11 @@ export async function getServerSideProps() {
             height
             alt
           }
+        }
+        pageSeo: _seoMetaTags {
+          attributes
+          content
+          tag
         }
       }
       allEvents {
@@ -56,11 +68,15 @@ export async function getServerSideProps() {
     }
   `)
 
+  const { pageSeo, ...hero } = res.eventsHero
+  const { favicon } = res.site
+
   return {
     props: {
-      hero: res.eventsHero,
+      hero: hero,
       allEvents: res.allEvents,
       contactInfo: res.contactInfo,
+      seo: [...pageSeo, ...favicon],
     },
   }
 }

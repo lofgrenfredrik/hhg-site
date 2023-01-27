@@ -4,7 +4,7 @@ import Hero from "../components/Hero"
 import Partners from "../components/Partners"
 import { fetchQueryAPI } from "../lib/api"
 
-export default function Page({ hero, partner }) {
+export default function Main({ hero, partner }) {
   return (
     <Fragment>
       <Hero hero={hero} />
@@ -16,6 +16,13 @@ export default function Page({ hero, partner }) {
 export async function getServerSideProps() {
   const res = await fetchQueryAPI(`
     query {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
       mainHero {
         title
         description
@@ -26,6 +33,11 @@ export async function getServerSideProps() {
             height
             alt
           }
+        }
+        pageSeo: _seoMetaTags {
+          attributes
+          content
+          tag
         }
       }
       about {
@@ -55,5 +67,15 @@ export async function getServerSideProps() {
     }
   `)
 
-  return { props: { hero: res.mainHero, partner: res.partner, contactInfo: res.contactInfo } }
+  const { pageSeo, ...hero } = res.mainHero
+  const { favicon } = res.site
+
+  return {
+    props: {
+      hero: hero,
+      partner: res.partner,
+      contactInfo: res.contactInfo,
+      seo: [...pageSeo, ...favicon],
+    },
+  }
 }

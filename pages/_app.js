@@ -1,6 +1,9 @@
 import "./globals.css"
 
 import { Open_Sans, Unna } from "@next/font/google"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { renderMetaTags } from "react-datocms"
 
 import Layout from "../components/layout"
 import ContactModalContext from "../context/ContactModalContext"
@@ -17,9 +20,21 @@ const opensans = Open_Sans({
 })
 
 export default function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+  let pageSEO = pageProps?.seo
+
+  if (router.pathname !== "/") {
+    pageSEO = pageProps?.seo?.map((s) => {
+      if (s.tag === "title") {
+        return { ...s, content: `${s.content} - HHG` }
+      }
+      return s
+    })
+  }
   return (
     <ContactModalContext>
       <NavbarContext>
+        <Head>{renderMetaTags(pageSEO ?? [])}</Head>
         <main
           className={`${opensans.className} ${unna.variable} flex min-h-screen flex-col justify-between bg-neutral-900`}
         >

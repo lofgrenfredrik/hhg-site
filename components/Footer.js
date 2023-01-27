@@ -52,13 +52,13 @@ export default function Footer({ contactInfo }) {
           <h2 className="font-heading text-3xl font-bold">Contact</h2>
           <div className="mt-2">
             <span>{"Email: "}</span>
-            <a className="font-bold" href={`mailto:${eMail}`}>
+            <a className="umami--click--footer-email font-bold" href={`mailto:${eMail}`}>
               {eMail}
             </a>
           </div>
           <div className="mt-2">
             <span>{"Phone: "}</span>
-            <a className="font-bold" href={`tel:${phone}`}>
+            <a className="umami--click--footer-phone font-bold" href={`tel:${phone}`}>
               {phone}
             </a>
           </div>

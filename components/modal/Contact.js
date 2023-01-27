@@ -50,26 +50,30 @@ export default function ContactModal({ contactInfo }) {
               />
               <div className="mt-4">
                 <span className="none lg:inline">Email: </span>
-                <a ref={emailRef} className="font-bold focus:underline" href={`mailto:${eMail}`}>
+                <a
+                  ref={emailRef}
+                  className="umami--click--email font-bold focus:underline"
+                  href={`mailto:${eMail}`}
+                >
                   {eMail}
                 </a>
               </div>
               <div className="mt-4">
                 <span className="none lg:inline">Phone: </span>
-                <a className="font-bold focus:underline" href={`tel:${eMail}`}>
+                <a className="umami--click--phone font-bold focus:underline" href={`tel:${eMail}`}>
                   {phone}
                 </a>
               </div>
               <div className="mx-auto mt-8 flex w-48 justify-between">
-                <a href={facebook}>
+                <a href={facebook} className="umami--click--facebook">
                   <span className="sr-only">To facebook profile</span>
                   <FacebookIcon className="h-full w-full max-w-[50px]" />
                 </a>
-                <a href={instagram}>
+                <a href={instagram} className="umami--click--instagram">
                   <span className="sr-only">To instagram profile</span>
                   <InstagramIcon className="h-full w-full max-w-[50px]" />
                 </a>
-                <a href={linkedin}>
+                <a href={linkedin} className="umami--click--linkedin">
                   <span className="sr-only">To linkedin profile</span>
                   <LinkedInIcon className="h-full w-full max-w-[50px]" />
                 </a>

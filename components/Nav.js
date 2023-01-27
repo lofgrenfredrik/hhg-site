@@ -50,7 +50,7 @@ export default function Nav() {
           <button
             onClick={openContactModal}
             className={clsx({
-              "bgy rounded-md border-2 border-solid border-primary px-5 font-bold text-inherit  hover:bg-primaryLighter hover:text-black": true,
+              "umami--click--contact-button rounded-md border-2 border-solid border-primary px-5 font-bold text-inherit  hover:bg-primaryLighter hover:text-black": true,
               "bg-transparent": topSentinelInView,
               "bg-primary": !topSentinelInView,
             })}

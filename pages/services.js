@@ -20,6 +20,13 @@ export default function Services({ hero, allServices, products }) {
 export async function getServerSideProps() {
   const res = await fetchQueryAPI(`
     query {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
       servicesHero {
         title
         description
@@ -30,6 +37,11 @@ export async function getServerSideProps() {
             height
             alt
           }
+        }
+        pageSeo: _seoMetaTags {
+          attributes
+          content
+          tag
         }
       }
       allServices {
@@ -75,12 +87,16 @@ export async function getServerSideProps() {
     }
   `)
 
+  const { pageSeo, ...hero } = res.servicesHero
+  const { favicon } = res.site
+
   return {
     props: {
-      hero: res.servicesHero,
+      hero: hero,
       allServices: res.allServices,
       contactInfo: res.contactInfo,
       products: res.product,
+      seo: [...pageSeo, ...favicon],
     },
   }
 }
