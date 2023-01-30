@@ -8,7 +8,7 @@ export default function Events({ hero, allEvents }) {
   return (
     <Fragment>
       <Hero hero={hero} />
-      <div className="mx-auto flex max-w-maximus flex-col gap-8 py-8 lg:gap-14 lg:py-14">
+      <div className="mx-auto flex w-full max-w-maximus flex-col gap-8 py-8 lg:gap-14 lg:py-14">
         <EventsList allEvents={allEvents} />
       </div>
     </Fragment>
