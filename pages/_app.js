@@ -1,6 +1,7 @@
 import "./globals.css"
 
 import { Open_Sans, Unna } from "@next/font/google"
+import { Analytics } from "@vercel/analytics/react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { renderMetaTags } from "react-datocms"
@@ -42,6 +43,7 @@ export default function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           </Layout>
         </main>
+        <Analytics />
       </NavbarContext>
     </ContactModalContext>
   )
