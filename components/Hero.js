@@ -28,6 +28,7 @@ export default function Home({ hero }) {
             <p className="mt-4 text-lg">{description}</p>
           </div>
           <Link href="/" className="w-3/5 max-w-sm flex-1">
+            <span className="sr-only">To start page</span>
             <SimpleLogo className="h-full w-full fill-white" />
           </Link>
         </div>
