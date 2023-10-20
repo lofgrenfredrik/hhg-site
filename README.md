@@ -1,3 +1,3 @@
-#Henx Hospitality - Premium Site
+# Henx Hospitality Group - Premium Site
 
 ## HHG - NextJs
