@@ -1,13 +1,15 @@
 import { Fragment } from "react"
 
+import About from "../components/About"
 import Hero from "../components/Hero"
 import Partners from "../components/Partners"
 import { fetchQueryAPI } from "../lib/api"
 
-export default function Main({ hero, partner }) {
+export default function Main({ hero, partner, about }) {
   return (
     <Fragment>
       <Hero hero={hero} />
+      <About about={about} />
       <Partners partners={partner} />
     </Fragment>
   )
@@ -73,6 +75,7 @@ export async function getServerSideProps() {
   return {
     props: {
       hero: hero,
+      about: res.about.description,
       partner: res.partner,
       contactInfo: res.contactInfo,
       seo: [...pageSeo, ...favicon],
