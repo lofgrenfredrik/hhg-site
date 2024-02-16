@@ -9,7 +9,7 @@ export default function Main({ hero, partner, about }) {
   return (
     <Fragment>
       <Hero hero={hero} />
-      <About about={about} />
+      {about ? <About about={about} /> : null}
       <Partners partners={partner} />
     </Fragment>
   )
