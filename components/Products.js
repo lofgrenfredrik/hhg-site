@@ -4,7 +4,7 @@ import Wysiwyg from "./Wysiwyg"
 
 export default function Products({ products }) {
   return products ? (
-    <div id="products" className="lg:scroll-mt-[120px]">
+    <section id="products" className="lg:scroll-mt-[120px]">
       <hr className="mb-14 h-2 border-0 bg-gradient-to-r from-neutral-900 via-primary to-neutral-900" />
       <div className="rounded-lg bg-neutral-800 p-5 text-white">
         <h2 className="font-heading text-5xl font-bold">{products.title}</h2>
@@ -15,6 +15,6 @@ export default function Products({ products }) {
           })}
         </div>
       </div>
-    </div>
+    </section>
   ) : null
 }
