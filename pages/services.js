@@ -9,7 +9,7 @@ export default function Services({ hero, allServices, products }) {
   return (
     <Fragment>
       <Hero hero={hero} />
-      <div className="mx-auto flex max-w-maximus flex-col gap-8 py-8 lg:gap-14 lg:py-14">
+      <div className="mx-auto flex max-w-maximus flex-col gap-8 px-3 py-8 md:p-8 lg:gap-14 lg:py-14">
         <ServicesList allServices={allServices} />
         <Products products={products} />
       </div>
