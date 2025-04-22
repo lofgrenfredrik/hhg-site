@@ -1,4 +1,4 @@
-import { Image as DatoImage } from "react-datocms"
+import { Image } from "react-datocms"
 
 import Wysiwyg from "./Wysiwyg"
 
@@ -11,7 +11,7 @@ export default function Products({ products }) {
         <Wysiwyg html={products.body} />
         <div className="mt-7 grid grid-cols-2 gap-4 lg:grid-cols-3">
           {products.productItems.map((item) => {
-            return <DatoImage key={item.responsiveImage.base64} data={item.responsiveImage} />
+            return <Image key={item.responsiveImage.base64} data={item.responsiveImage} />
           })}
         </div>
       </div>

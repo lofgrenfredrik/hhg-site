@@ -1,4 +1,5 @@
-module.exports = {
+// ES module syntax for prettier configuration
+export default {
   semi: false,
   trailingComma: "es5",
   singleQuote: false,
