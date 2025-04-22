@@ -1,3 +1,5 @@
+"use client"
+
 import loadable from "@loadable/component"
 import { Image as DatoImage } from "react-datocms"
 const InfiniteCarousel = loadable(() => import("react-leaf-carousel"))
