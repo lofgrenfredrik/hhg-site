@@ -1,3 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e0a500;
+  --color-primary-lighter: #ffc82e;
+
+  --max-width-maximus: 1200px;
+
+  --font-heading: var(--font-unna);
+}
+
+@layer components {
+  .partners {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .partners-md {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .partners-lg {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
