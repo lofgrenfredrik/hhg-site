@@ -2,8 +2,27 @@ import EventsList from "../../components/EventsList"
 import Hero from "../../components/Hero"
 import { fetchAPI } from "../../lib/api-utils"
 
-export const metadata = {
-  title: "Events",
+import { toNextMetadata } from "react-datocms"
+
+export async function generateMetadata() {
+  const { eventsHero, site } = await fetchAPI(`
+    query {
+      eventsHero {
+        _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }`)
+  return toNextMetadata([...eventsHero?._seoMetaTags, ...site.favicon] || [])
 }
 
 async function getEventsData() {

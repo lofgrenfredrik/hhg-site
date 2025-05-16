@@ -2,10 +2,27 @@ import About from "../components/About"
 import Hero from "../components/Hero"
 import Partners from "../components/Partners"
 import { fetchAPI } from "../lib/api-utils"
-import { VideoPlayer } from "react-datocms"
+import { VideoPlayer, toNextMetadata } from "react-datocms"
 
-export const metadata = {
-  title: "Home",
+export async function generateMetadata() {
+  const { mainHero, site } = await fetchAPI(`
+    query {
+      mainHero {
+        _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }`)
+  return toNextMetadata([...mainHero?._seoMetaTags, ...site.favicon] || [])
 }
 
 async function getHomeData() {
@@ -21,11 +38,6 @@ async function getHomeData() {
             height
             alt
           }
-        }
-        pageSeo: _seoMetaTags {
-          attributes
-          content
-          tag
         }
       }
       about {

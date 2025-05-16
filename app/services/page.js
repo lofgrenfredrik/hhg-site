@@ -2,9 +2,27 @@ import Hero from "../../components/Hero"
 import Products from "../../components/Products"
 import ServicesList from "../../components/ServicesList"
 import { fetchAPI } from "../../lib/api-utils"
+import { toNextMetadata } from "react-datocms"
 
-export const metadata = {
-  title: "Services",
+export async function generateMetadata() {
+  const { servicesHero, site } = await fetchAPI(`
+    query {
+      servicesHero {
+        _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }`)
+  return toNextMetadata([...servicesHero?._seoMetaTags, ...site.favicon] || [])
 }
 
 async function getServicesData() {
