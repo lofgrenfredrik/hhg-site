@@ -9,7 +9,6 @@ import {
   getScreenWidth,
 } from "./common/helpers"
 import InfiniteCarouselArrow from "./components/InfiniteCarouselArrow"
-import InfiniteCarouselDots from "./components/InfiniteCarouselDots"
 
 class InfiniteCarousel extends Component {
   constructor(props) {
@@ -40,7 +39,6 @@ class InfiniteCarousel extends Component {
       },
       scrollOnDeviceProps: {
         arrows: false,
-        dots: false,
         lazyLoad: false,
         autoCycle: false,
       },
@@ -333,28 +331,6 @@ class InfiniteCarousel extends Component {
     }
 
     return targetIndex
-  }
-
-  onDotClick = (event) => {
-    event.preventDefault()
-    const { settings, animating, autoCycleTimer } = this.state
-    const { slidesToShow, autoCycle } = settings
-    if (animating) {
-      return
-    }
-    if (autoCycle && autoCycleTimer) {
-      clearInterval(autoCycleTimer)
-      this.setState({
-        autoCycleTimer: null,
-      })
-    }
-
-    const targetIndex = event.target.parentElement.getAttribute("data-index")
-    const currentIndex = this.getTargetIndex(targetIndex * slidesToShow, slidesToShow)
-    this.handleTrack(targetIndex * slidesToShow, currentIndex)
-    if (settings.autoCycle) {
-      this.playAutoCycle()
-    }
   }
 
   onWindowResized = () => {
@@ -835,7 +811,6 @@ class InfiniteCarousel extends Component {
     const { settings, singlePage, activePage, slidePages, dragging } = this.state
     let prevArrow
     let nextArrow
-    let dots
 
     if (settings.arrows && !singlePage && !hasScrollOnDevice) {
       if (settings.prevArrow == null) {
@@ -857,25 +832,6 @@ class InfiniteCarousel extends Component {
         }
         nextArrow = React.cloneElement(settings.nextArrow, nextArrowProps)
       }
-    }
-
-    if (settings.dots && !singlePage && !hasScrollOnDevice) {
-      dots = (
-        <InfiniteCarouselDots
-          carouselName={name}
-          activePage={activePage}
-          numberOfDots={slidePages}
-          onClick={this.onDotClick}
-        />
-      )
-    }
-
-    if (settings.paging && !singlePage && !hasScrollOnDevice) {
-      dots = (
-        <span data-testid={`${name}-paging`} className="InfiniteCarouselPaging">
-          {`${activePage + 1} ${pagingSeparator} ${slidePages}`}
-        </span>
-      )
     }
 
     const { children, lazyLoadedList, visibleSlideList } = this.state
@@ -925,7 +881,6 @@ class InfiniteCarousel extends Component {
           </ul>
         </div>
         {nextArrow}
-        {dots}
       </div>
     )
   }
@@ -935,7 +890,6 @@ InfiniteCarousel.defaultProps = {
   children: [],
   name: "infinite-carousel",
   arrows: true,
-  dots: false,
   paging: false,
   lazyLoad: false,
   swipe: true,
