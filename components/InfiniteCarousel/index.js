@@ -4,7 +4,7 @@ import uniqid from "uniqid"
 import {
   getElementWidth,
   getSwipeDirection,
-  isTouchDevice,
+  isTouchDevice as originalIsTouchDevice,
   sortNumber,
   getScreenWidth,
 } from "./common/helpers"
@@ -45,21 +45,20 @@ class InfiniteCarousel extends Component {
       lowerBreakpoint: undefined,
       higherBreakpoint: undefined,
       slideUniqueIds: [],
+      hasMounted: false,
     }
   }
 
   componentDidMount() {
     this.init()
 
-    if (!window) {
-      return
-    }
-
     if (window.addEventListener) {
       window.addEventListener("resize", this.onWindowResized)
     } else {
       window.attachEvent("onresize", this.onWindowResized)
     }
+
+    this.setState({ hasMounted: true })
   }
 
   componentDidUpdate(prevProps) {
@@ -79,6 +78,13 @@ class InfiniteCarousel extends Component {
     if (autoCycleTimer) {
       clearInterval(autoCycleTimer)
     }
+  }
+
+  _isClientTouchDevice = () => {
+    if (!this.state.hasMounted) {
+      return false
+    }
+    return originalIsTouchDevice()
   }
 
   setupBreakpointSettings = () => {
@@ -111,7 +117,8 @@ class InfiniteCarousel extends Component {
         const query = { minWidth: lowerBreakpoint, maxWidth: higherBreakpoint }
 
         media(query, () => {
-          const scrollOnDevice = propScrollOnDevice && isTouchDevice()
+          const currentIsTouch = this._isClientTouchDevice()
+          const scrollOnDevice = propScrollOnDevice && currentIsTouch
           const scrollOnDeviceProps = scrollOnDevice ? stateScrollOnDeviceProps : {}
           const newSettings = {
             ...this.defaultProps,
@@ -127,7 +134,8 @@ class InfiniteCarousel extends Component {
       breakpoints.reverse()
       const query = { minWidth: breakpoints[0] }
       media(query, () => {
-        const scrollOnDevice = propScrollOnDevice && isTouchDevice()
+        const currentIsTouch = this._isClientTouchDevice()
+        const scrollOnDevice = propScrollOnDevice && currentIsTouch
         const scrollOnDeviceProps = scrollOnDevice ? stateScrollOnDeviceProps : {}
         const newSettings = {
           ...this.defaultProps,
@@ -158,7 +166,8 @@ class InfiniteCarousel extends Component {
   setDimensions = () => {
     const { settings, lowerBreakpoint, higherBreakpoint, children, currentIndex } = this.state
     const { children: propChildren, scrollOnDevice: propScrollOnDevice } = this.props
-    const scrollOnDevice = propScrollOnDevice && isTouchDevice()
+    const currentIsTouch = this._isClientTouchDevice()
+    const scrollOnDevice = propScrollOnDevice && currentIsTouch
     const currentScreenWidth = getScreenWidth()
     const sideSize = this.getSideSize(lowerBreakpoint, higherBreakpoint, currentScreenWidth)
     const childrenCount = Children.count(propChildren)
@@ -285,7 +294,8 @@ class InfiniteCarousel extends Component {
       return [children]
     }
 
-    if (scrollOnDevice && isTouchDevice()) {
+    const currentIsTouch = this._isClientTouchDevice()
+    if (scrollOnDevice && currentIsTouch) {
       return children
     }
 
@@ -548,7 +558,8 @@ class InfiniteCarousel extends Component {
   getSlideStyles = (isVisible) => {
     const { slidesWidth, settings } = this.state
     const { scrollOnDevice } = this.props
-    const isScrollTouch = scrollOnDevice && isTouchDevice()
+    const currentIsTouch = this._isClientTouchDevice()
+    const isScrollTouch = scrollOnDevice && currentIsTouch
     const float = isScrollTouch ? "none" : "left"
     const display = "inline-block"
     const opacity = isVisible ? "1" : settings.sidesOpacity
@@ -768,8 +779,9 @@ class InfiniteCarousel extends Component {
   getSettingsForScrollOnDevice = () => {
     const { scrollOnDevice } = this.props
     const { scrollOnDeviceProps } = this.state
+    const currentIsTouch = this._isClientTouchDevice()
     let settings
-    if (scrollOnDevice && isTouchDevice()) {
+    if (scrollOnDevice && currentIsTouch) {
       settings = {
         ...this.defaultProps,
         ...this.props,
@@ -807,7 +819,7 @@ class InfiniteCarousel extends Component {
 
   render() {
     const { scrollOnDevice, pagingSeparator, name } = this.props
-    const hasScrollOnDevice = scrollOnDevice && isTouchDevice()
+    const hasScrollOnDevice = scrollOnDevice && this._isClientTouchDevice()
     const { settings, singlePage, activePage, slidePages, dragging } = this.state
     let prevArrow
     let nextArrow
@@ -839,7 +851,7 @@ class InfiniteCarousel extends Component {
     let trackStyles
     let trackClassName
 
-    if (scrollOnDevice && isTouchDevice()) {
+    if (scrollOnDevice && this._isClientTouchDevice()) {
       trackStyles = {
         ...this.getScrollTrackStyles,
       }
@@ -851,7 +863,7 @@ class InfiniteCarousel extends Component {
       trackClassName = ""
     }
 
-    const disableSwipeEvents = scrollOnDevice && isTouchDevice()
+    const disableSwipeEvents = scrollOnDevice && this._isClientTouchDevice()
 
     return (
       <div

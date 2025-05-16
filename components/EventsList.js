@@ -8,7 +8,7 @@ export default function EventsList({ allEvents }) {
       key={event.id}
     >
       <h2 className="font-heading text-3xl font-bold">{event.title}</h2>
-      <div className="min-h-[300px] w-full">
+      <div className="min-h-[200px] lg:min-h-[300px] w-full h-full">
         <GalleryCarousel gallery={event.gallery} />
       </div>
       <Wysiwyg html={event.body} />
