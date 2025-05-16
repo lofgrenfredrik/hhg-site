@@ -27,12 +27,15 @@ async function getEventsData() {
         body
         gallery {
           id
-          responsiveImage(imgixParams: {w: 300}) {
+          responsiveImage(imgixParams: {w: 800, auto: format, q: 80}) {
             src
             width
             height
             title
             base64
+            alt
+            aspectRatio
+            sizes
           }
         }
       }
