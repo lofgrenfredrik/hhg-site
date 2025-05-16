@@ -2,6 +2,7 @@ import About from "../components/About"
 import Hero from "../components/Hero"
 import Partners from "../components/Partners"
 import { fetchAPI } from "../lib/api-utils"
+import { VideoPlayer } from "react-datocms"
 
 export const metadata = {
   title: "Home",
@@ -14,7 +15,7 @@ async function getHomeData() {
         title
         description
         backgroundImage {
-          responsiveImage(imgixParams: {w: 1300}) {
+          responsiveImage(imgixParams: { w: 1300 }) {
             src
             width
             height
@@ -35,11 +36,28 @@ async function getHomeData() {
         partnerLogos {
           id
           title
-          responsiveImage(imgixParams: {w: 200}) {
+          responsiveImage(imgixParams: { w: 200 }) {
             src
             width
             height
             title
+          }
+        }
+      }
+      mainVideo {
+        video {
+          video {
+            # required: this field identifies the video to be played
+            muxPlaybackId
+            # all the other fields are not required but:
+            # if provided, title is displayed in the upper left corner of the video
+            title
+            # if provided, width and height are used to define the aspect ratio of the
+            # player, so to avoid layout jumps during the rendering.
+            width
+            height
+            # if provided, it shows a blurred placeholder for the video
+            blurUpThumb
           }
         }
       }
@@ -50,12 +68,17 @@ async function getHomeData() {
 }
 
 export default async function Home() {
-  const { mainHero, about, partner } = await getHomeData()
+  const { mainHero, about, partner, mainVideo } = await getHomeData()
 
   return (
     <>
       <Hero hero={mainHero} />
-      <h1>APP</h1>
+      {mainVideo ? (
+        <div className="mx-auto w-full max-w-maximus px-3 py-8 md:p-8">
+          <VideoPlayer data={mainVideo.video.video} thumbnailTime={2} />
+        </div>
+      ) : null}
+
       {about ? <About about={about.description} /> : null}
       <Partners partners={partner} />
     </>
