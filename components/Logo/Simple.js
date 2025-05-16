@@ -1,3 +1,5 @@
+"use client"
+
 export default function SimpleLogo(props) {
   return (
     <svg {...props} width="144" height="60" viewBox="0 0 144 60" xmlns="http://www.w3.org/2000/svg">

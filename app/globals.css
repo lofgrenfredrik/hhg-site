@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e0a500;
+  --color-primary-lighter: #ffc82e;
+
+  --max-width-maximus: 1200px;
+
+  --font-heading: var(--font-unna);
+}
+
+/* Styles from InfiniteCarousel.css */
+.InfiniteCarousel {
+  position: relative;
+}
+
+.InfiniteCarouselFrame {
+  width: 100%;
+  overflow: hidden;
+}
+
+.InfiniteCarouselScrollTrack {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  overflow: -moz-scrollbars-none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.InfiniteCarouselScrollTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.InfiniteCarouselSlide img {
+  width: 100%;
+}
+
+.InfiniteCarouselPaging {
+  position: absolute;
+  left: 50%;
+  bottom: -60px;
+  padding: 0;
+  transform: translateX(-20%);
+  font-family: Arial;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.InfiniteCarouselArrow {
+  display: block;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  outline: none;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.InfiniteCarouselArrowPrev {
+  left: 15px;
+  right: auto;
+  height: 100%;
+}
+
+.InfiniteCarouselArrowNext {
+  left: auto;
+  right: 15px;
+  height: 100%;
+}
+
+.InfiniteCarouselArrowIcon {
+  display: inline-block;
+  padding: 10px;
+  border: solid #e5e5e5;
+  border-width: 0 5px 5px 0;
+}
+
+.InfiniteCarouselArrowNextIcon {
+  transform: rotate(-45deg);
+}
+
+.InfiniteCarouselArrowPrevIcon {
+  transform: rotate(135deg);
+}

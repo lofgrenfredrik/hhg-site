@@ -1,3 +1,5 @@
+"use client"
+
 import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import { Fragment, useRef } from "react"
@@ -14,8 +16,8 @@ export default function ContactModal({ contactInfo }) {
   const emailRef = useRef(null)
 
   return (
-    <Transition show={isContactModalOpen} as={Fragment}>
-      <Dialog onClose={closeContactModal} className="relative z-50" initialFocus={emailRef}>
+    <Transition appear show={isContactModalOpen} as={Fragment}>
+      <Dialog onClose={closeContactModal} initialFocus={emailRef}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -25,10 +27,10 @@ export default function ContactModal({ contactInfo }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/40" />
+          <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
         </Transition.Child>
 
-        <div className="fixed inset-0 flex items-center justify-center lg:p-4">
+        <div className="fixed inset-0 flex items-center justify-center lg:p-4 z-50">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -38,8 +40,8 @@ export default function ContactModal({ contactInfo }) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="relative mx-auto flex h-screen w-screen flex-col items-center justify-center bg-white p-10 text-center transition-all lg:h-auto lg:max-w-[450px] lg:items-start  lg:rounded-lg lg:text-left">
-              <button className="absolute top-5 right-4" onClick={closeContactModal}>
+            <Dialog.Panel className="relative mx-auto flex h-screen w-screen flex-col items-center justify-center bg-white p-10 text-center transition-all lg:h-auto lg:max-w-[450px] lg:items-start lg:rounded-lg lg:text-left">
+              <button className="absolute top-5 right-4" onClick={closeContactModal} type="button">
                 <span className="sr-only">Close contact dialog</span>
                 <XMarkIcon className="h-6 w-6 text-black" />
               </button>
@@ -60,7 +62,7 @@ export default function ContactModal({ contactInfo }) {
               </div>
               <div className="mt-4">
                 <span className="none lg:inline">Phone: </span>
-                <a className="umami--click--phone font-bold focus:underline" href={`tel:${eMail}`}>
+                <a className="umami--click--phone font-bold focus:underline" href={`tel:${phone}`}>
                   {phone}
                 </a>
               </div>

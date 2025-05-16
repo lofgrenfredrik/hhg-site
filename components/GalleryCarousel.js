@@ -1,8 +1,9 @@
-import loadable from "@loadable/component"
-import { Image as DatoImage } from "react-datocms"
-const InfiniteCarousel = loadable(() => import("react-leaf-carousel"))
+"use client"
 
-export default function Gallery({ gallery }) {
+import { Image as DatoImage } from "react-datocms"
+import InfiniteCarousel from "./InfiniteCarousel"
+
+export default function GalleryCarousel({ gallery }) {
   return (
     <div className="w-full">
       <InfiniteCarousel

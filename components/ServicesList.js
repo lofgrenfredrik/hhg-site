@@ -1,5 +1,4 @@
 import { Image as DatoImage } from "react-datocms"
-
 import Wysiwyg from "./Wysiwyg"
 
 export default function ServicesList({ allServices }) {
