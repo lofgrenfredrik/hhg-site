@@ -52,10 +52,11 @@ export default function Nav() {
           <button
             onClick={openContactModal}
             className={clsx({
-              "umami--click--contact-button rounded-md border-2 border-solid border-primary px-5 font-bold text-inherit  hover:bg-primary-lighter hover:text-black": true,
+              "rounded-md border-2 border-solid border-primary px-5 font-bold text-inherit  hover:bg-primary-lighter hover:text-black": true,
               "bg-transparent": topSentinelInView,
               "bg-primary": !topSentinelInView,
             })}
+            data-umami-event="nav-contact-button"
           >
             Contact
           </button>

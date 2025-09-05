@@ -54,28 +54,45 @@ export default function ContactModal({ contactInfo }) {
                 <span className="none lg:inline">Email: </span>
                 <a
                   ref={emailRef}
-                  className="umami--click--email font-bold focus:underline"
+                  className="font-bold focus:underline"
                   href={`mailto:${eMail}`}
+                  data-umami-event="modal-contact-email"
                 >
                   {eMail}
                 </a>
               </div>
               <div className="mt-4">
                 <span className="none lg:inline">Phone: </span>
-                <a className="umami--click--phone font-bold focus:underline" href={`tel:${phone}`}>
+                <a
+                  className="font-bold focus:underline"
+                  href={`tel:${phone}`}
+                  data-umami-event="modal-contact-phone"
+                >
                   {phone}
                 </a>
               </div>
               <div className="mx-auto mt-8 flex w-48 justify-between">
-                <a href={facebook} className="umami--click--facebook">
+                <a
+                  href={facebook}
+                  className="font-bold focus:underline"
+                  data-umami-event="modal-contact-facebook"
+                >
                   <span className="sr-only">To facebook profile</span>
                   <FacebookIcon className="h-full w-full max-w-[50px]" />
                 </a>
-                <a href={instagram} className="umami--click--instagram">
+                <a
+                  href={instagram}
+                  className="font-bold focus:underline"
+                  data-umami-event="modal-contact-instagram"
+                >
                   <span className="sr-only">To instagram profile</span>
                   <InstagramIcon className="h-full w-full max-w-[50px]" />
                 </a>
-                <a href={linkedin} className="umami--click--linkedin">
+                <a
+                  href={linkedin}
+                  className="font-bold focus:underline"
+                  data-umami-event="modal-contact-linkedin"
+                >
                   <span className="sr-only">To linkedin profile</span>
                   <LinkedInIcon className="h-full w-full max-w-[50px]" />
                 </a>

@@ -24,7 +24,8 @@ export default function Footer({ contactInfo }) {
             rel="noopener noreferrer"
             target="_blank"
             title="To facebook profile"
-            className="umami--click--footer-facebook w-12"
+            className="w-12"
+            data-umami-event="footer-facebook"
           >
             <span className="sr-only">To facebook profile</span>
             <FacebookIcon />
@@ -34,7 +35,8 @@ export default function Footer({ contactInfo }) {
             rel="noopener noreferrer"
             target="_blank"
             title="To instagram profile"
-            className="umami--click--footer-instagram w-12"
+            className="w-12"
+            data-umami-event="footer-instagram"
           >
             <span className="sr-only">To instagram profile</span>
             <InstagramIcon />
@@ -44,7 +46,8 @@ export default function Footer({ contactInfo }) {
             rel="noopener noreferrer"
             target="_blank"
             title="To linkedIn profile"
-            className="umami--click--footer-linkedin w-12"
+            className="w-12"
+            data-umami-event="footer-linkedin"
           >
             <span className="sr-only">To linkedIn profile</span>
             <LinkedInIcon />
@@ -60,7 +63,7 @@ export default function Footer({ contactInfo }) {
           </div>
           <div className="mt-2">
             <span>{"Phone: "}</span>
-            <a className="umami--click--footer-phone font-bold" href={`tel:${phone}`}>
+            <a className="font-bold" href={`tel:${phone}`} data-umami-event="footer-phone">
               {phone}
             </a>
           </div>
