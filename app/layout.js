@@ -47,7 +47,7 @@ export default async function RootLayout({ children }) {
         <Script
           defer
           src="https://hhg-analytics.vercel.app/script.js"
-          data-website-id="7becede0-353a-4baa-862d-3e0e639eb124"
+          data-website-id="f7763333-455c-4255-8607-4c9a1a9c4da6"
         />
         <ContactModalProvider>
           <NavbarProvider>
