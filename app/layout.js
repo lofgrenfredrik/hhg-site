@@ -1,5 +1,6 @@
 import "./globals.css"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script"
 
 import { Analytics } from "@vercel/analytics/react"
 import { Open_Sans, Unna } from "next/font/google"
@@ -43,6 +44,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${opensans.className} ${unna.variable} bg-neutral-900`}>
+        <Script
+          defer
+          src="https://hhg-analytics.vercel.app/script.js"
+          data-website-id="8f9bf685-b9b8-440d-bf5d-c7199d5bfc55"
+        />
         <ContactModalProvider>
           <NavbarProvider>
             <main className="flex min-h-screen flex-col justify-between">
