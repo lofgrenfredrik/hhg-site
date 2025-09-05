@@ -54,7 +54,7 @@ export default function Footer({ contactInfo }) {
           <h2 className="font-heading text-3xl font-bold">Contact</h2>
           <div className="mt-2">
             <span>{"Email: "}</span>
-            <a className="umami--click--footer-email font-bold" href={`mailto:${eMail}`}>
+            <a className="font-bold" href={`mailto:${eMail}`} data-umami-event="footer-email">
               {eMail}
             </a>
           </div>
