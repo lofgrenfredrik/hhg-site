@@ -34,6 +34,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   // Fetch contact info at the layout level
   let contactInfo = {}
+  const production = process.env.NODE_ENV === "production"
 
   try {
     contactInfo = await getContactInfo()
@@ -44,11 +45,13 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${opensans.className} ${unna.variable} bg-neutral-900`}>
-        <Script
-          defer
-          src="https://hhg-analytics.vercel.app/script.js"
-          data-website-id="f7763333-455c-4255-8607-4c9a1a9c4da6"
-        />
+        {production ? (
+          <Script
+            defer
+            src="https://hhg-analytics.vercel.app/script.js"
+            data-website-id="f7763333-455c-4255-8607-4c9a1a9c4da6"
+          />
+        ) : null}
         <ContactModalProvider>
           <NavbarProvider>
             <main className="flex min-h-screen flex-col justify-between">
