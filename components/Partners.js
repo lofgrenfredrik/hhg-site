@@ -1,4 +1,4 @@
-import Image from "next/image"
+import { Image as DatoImage } from "react-datocms"
 
 export default function Partners({ partners }) {
   return (
@@ -10,13 +10,7 @@ export default function Partners({ partners }) {
             key={partner.id}
             className="flex items-center justify-center rounded-lg bg-white p-4"
           >
-            <Image
-              src={partner.responsiveImage.src}
-              alt={partner.responsiveImage.title}
-              width={partner.responsiveImage.width}
-              height={partner.responsiveImage.height}
-              title={partner.responsiveImage.title}
-            />
+            <DatoImage data={partner.responsiveImage} />
           </div>
         ))}
       </div>
