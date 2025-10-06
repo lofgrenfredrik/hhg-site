@@ -94,7 +94,11 @@ export default async function Home() {
       <Hero hero={mainHero} />
       {mainVideo?.video ? (
         <div className="mx-auto w-full max-w-maximus px-3 py-8 md:p-8">
-          <VideoPlayer data={mainVideo.video.video} thumbnailTime={2} />
+          <VideoPlayer
+            data={mainVideo.video.video}
+            thumbnailTime={2}
+            data-umami-event="video-play"
+          />
         </div>
       ) : null}
 
