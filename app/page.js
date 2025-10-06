@@ -32,11 +32,18 @@ async function getHomeData() {
         title
         description
         backgroundImage {
-          responsiveImage(imgixParams: { w: 1300 }) {
+          responsiveImage {
+            srcSet
+            webpSrcSet
+            sizes
             src
             width
             height
+            aspectRatio
             alt
+            title
+            bgColor
+            base64
           }
         }
       }

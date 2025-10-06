@@ -14,7 +14,7 @@ export default function Home({ hero }) {
     <div className="grid">
       <div ref={topSentinelRef} className="absolute top-0 h-28" />
       <DatoImage
-        className="h-screen w-screen row-span-full col-span-full"
+        className="h-screen w-screen row-span-full col-span-full !max-w-full"
         objectFit="cover"
         priority
         data={backgroundImage.responsiveImage}
@@ -27,7 +27,7 @@ export default function Home({ hero }) {
           <h1 className="font-heading text-5xl font-bold">{title}</h1>
           <p className="mt-4 text-lg">{description}</p>
         </div>
-        <Link href="/" className="w-3/5 max-w-sm flex-1">
+        <Link href="/" className="w-3/5 max-w-sm lg:flex-1">
           <span className="sr-only">To start page</span>
           <SimpleLogo className="h-full w-full fill-white" />
         </Link>
